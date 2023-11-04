@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Animated Trailer</title>
+  <style>
+    body {
+      background-color: rgb(20, 20, 20);
+      height: 100vh;
+      margin: 0px;
+    }
+
+    body:hover > #trailer {
+      opacity: 1;
+    }
+
+    #trailer {
+      height: 20px;
+      width: 20px;
+      border-radius: 50%;
+      background-color: white;
+      position: fixed;
+      left: 0px;
+      top: 0px;
+      z-index: 10000;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 500ms ease;
+    }
+  </style>
+</head>
+<body>
+  <div id="trailer"></div>
+  <script>
+    const trailer = document.getElementById("trailer");
+
+    window.onmousemove = e => {
+      const x = e.clientX - trailer.offsetWidth / 2,
+            y = e.clientY - trailer.offsetHeight / 2;
+
+      const keyframes = {
+        transform: `translate(${x}px, ${y}px)`
+      };
+
+      trailer.animate(keyframes, { duration: 800, fill: "forwards" });
+    }
+  </script>
+</body>
+</html>
+
